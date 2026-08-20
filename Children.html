@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>CHILDREN - Subcategories</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 20px 30px;
+      text-align: center;
+      font-size: 26px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+
+    .cart-icon {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 16px;
+      font-weight: bold;
+      background: #ff9800;
+      padding: 6px 14px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .cart-icon:hover {
+      background: #e67e22;
+      color: #fff;
+    }
+
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 25px;
+      padding: 40px 50px;
+    }
+
+
+    .subcategory {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      padding: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .subcategory img {
+      max-width: 100%;
+      height: 180px;
+      object-fit: contain;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .subcategory h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: #2c3e50;
+    }
+
+    .subcategory p {
+      font-size: 15px;
+      color: #555;
+      margin-bottom: 12px;
+    }
+
+    .subcategory:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+
+    button {
+      background: #ff9800;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #fff;
+      font-size: 14px;
+      transition: background 0.3s, transform 0.2s;
+    }
+    button:hover {
+      background: #e67e22;
+      transform: scale(1.05);
+    }
+
+    .btn-buy {
+      background: #4caf50;
+    }
+    .btn-buy:hover {
+      background: #2e7d32;
+      transform: scale(1.05);
+    }
+
+
+    @media (max-width: 1200px) {
+      .container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>CHILDREN</h1>
+     <div class="cart-icon" onclick="window.location.href='cart.html'">
+    🛒 Cart (<span id="cartCount">0</span>)
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="subcategory">
+    <img src="MINI IMG/BOYS 1.jpg" alt="1">
+    <h3>Coffee Brown Suit Boys</h3>
+    <p>PRICE: RS 1250</p>
+    <div>
+      <button onclick="addToCart('Coffee Brown Suit Boys', 1250, 'MINI IMG/BOYS 1.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Coffee Brown Suit Boys', 1250, 'MINI IMG/BOYS 1.jpg')">Buy Now</button>
+    </div>
+    </div>
+  
+  <div class="subcategory">
+    <img src="MINI IMG/BOYS 2.jpg" alt="2">
+    <h3>Semi Formal Outfit Boys</h3>
+    <p>PRICE: RS 2000</p>
+    <div>
+      <button onclick="addToCart('Semi Formal Outfit Boys', 2000, 'MINI IMG/BOYS 2.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Semi Formal Outfit Boys', 2000, 'MINI IMG/BOYS 2.jpg')">Buy Now</button>
+    </div>
+    </div>
+  
+  <div class="subcategory">
+    <img src="MINI IMG/BOYS 3.jpg" alt="3">
+    <h3>Blue Blazers Boys</h3>
+    <p>PRICE: RS 1550</p>
+    <div>
+      <button onclick="addToCart('Blue Blazers Boys', 1550, 'MINI IMG/BOYS 3.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Blue Blazers Boys', 1550, 'MINI IMG/BOYS 3.jpg')">Buy Now</button>
+    </div>
+  </div>
+
+   <div class="subcategory">
+     <img src="MINI IMG/BOYS 4.jpg" alt="4">
+     <h3>Zolario Kids Boys</h3>
+     <p>PRICE: RS 1200</p>
+    <div>
+      <button onclick="addToCart('Zolario Kids Boys', 1200, 'MINI IMG/BOYS 4.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Zolario Kids Boys', 1200, 'MINI IMG/BOYS 4.jpg')">Buy Now</button>
+    </div>
+   </div>
+
+    <div class="subcategory">
+      <img src="MINI IMG/BOYS 5.jpg" alt="5">
+      <h3>Zolario Kids Boys Sherwani</h3>
+      <p>PRICE: RS 1000</p>
+    <div>
+      <button onclick="addToCart('Zolario Kids Boys Sherwani', 1000, 'MINI IMG/BOYS 5.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Zolario Kids Boys Sherwani', 1000, 'MINI IMG/BOYS 5.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+    <div class="subcategory">
+        <img src="MINI IMG/BOYS 6.jpg" alt="6">
+        <h3>Navy Blue Shirts Boys</h3>
+        <p>PRICE: RS 860</p>
+    <div>
+      <button onclick="addToCart('Navy Blue Shirts Boys', 860, 'MINI IMG/BOYS 6.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Navy Blue Shirts Boys', 860, 'MINI IMG/BOYS 6.jpg')">Buy Now</button>
+    </div>
+    </div>
+    <div class="subcategory">
+        <img src="MINI IMG/BOYS 7.jpg" alt="7">
+        <h3>Checked Shirt and Jeans Boys</h3>
+        <p>PRICE: RS 900</p>
+    <div>
+      <button onclick="addToCart('Checked Shirt and Jeans Boys', 900, 'MINI IMG/BOYS 7.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Checked Shirt and Jeans Boys', 900, 'MINI IMG/BOYS 7.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+    <div class="subcategory">
+        <img src="MINI IMG/BOYS 8.jpg" alt="8">
+        <h3>Party Kids Dhoti Boys</h3>
+        <p>PRICE: RS 1500</p>
+    <div>
+      <button onclick="addToCart('Party Kids Dhoti Boys', 1500, 'MINI IMG/BOYS 8.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Party Kids Dhoti Boys', 1500, 'MINI IMG/BOYS 8.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+    <div class="subcategory">
+        <img src="MINI IMG/BOYS 9.jpg" alt="9">
+        <h3>AMIRTHA FASHION BOYS</h3>
+        <p>PRICE: RS 1000</p>
+    <div>
+      <button onclick="addToCart('AMIRTHA FASHION BOYS', 1000, 'MINI IMG/BOYS 9.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('AMIRTHA FASHION BOYS', 1000, 'MINI IMG/BOYS 9.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+    <div class="subcategory">
+        <img src="MINI IMG/BOYS 10.jpg" alt="10">
+        <h3>Traditional Dhoti Boys</h3>
+        <p>PRICE: RS 1200</p>
+    <div>
+      <button onclick="addToCart('Traditional Dhoti Boys', 1200, 'MINI IMG/BOYS 10.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Traditional Dhoti Boys', 1200, 'MINI IMG/BOYS 10.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+
+      <div class="subcategory">
+    <img src="MINI IMG/GIRLS 1.jpg" alt="11">
+    <h3>Party Wear Gown Girls</h3>
+    <p>PRICE: RS 700</p>
+    <div>
+      <button onclick="addToCart('Party Wear Gown Girls', 700, 'MINI IMG/GIRLS 1.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Party Wear Gown Girls', 700, 'MINI IMG/GIRLS 1.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+      <div class="subcategory">
+    <img src="MINI IMG/GIRLS 2.jpg" alt="12">
+    <h3>Black Georgette Palazzo Girls</h3>
+    <p>PRICE: RS 650</p>
+    <div>
+      <button onclick="addToCart('Black Georgette Palazzo Girls', 650, 'MINI IMG/GIRLS 2.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Black Georgette Palazzo Girls', 650, 'MINI IMG/GIRLS 2.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+      <div class="subcategory">
+    <img src="MINI IMG/GIRLS 3.jpg" alt="13">
+    <h3>Black Silk Lehenga Girls</h3>
+    <p>PRICE: RS 700</p>
+    <div>
+      <button onclick="addToCart('Black Silk Lehenga Girls', 700, 'MINI IMG/GIRLS 3.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Black Silk Lehenga Girls', 700, 'MINI IMG/GIRLS 3.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+      <div class="subcategory">
+    <img src="MINI IMG/GIRLS 4.jpg" alt="14">
+    <h3>Morpich Gown Girls</h3>
+    <p>PRICE: RS 800</p>
+    <div>
+      <button onclick="addToCart('Morpich Gown Girls', 800, 'MINI IMG/GIRLS 4.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Morpich Gown Girls', 800, 'MINI IMG/GIRLS 4.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+      <div class="subcategory">
+    <img src="MINI IMG/GIRLS 5.jpg" alt="15">
+    <h3>Palazzo Coti Girls</h3>
+    <p>PRICE: RS 760</p>
+    <div>
+      <button onclick="addToCart('Palazzo Coti Girls', 760, 'MINI IMG/GIRLS 5.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Palazzo Coti Girls', 760, 'MINI IMG/GIRLS 5.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+
+      <div class="subcategory">
+    <img src="MINI IMG/GIRLS 6.jpg" alt="16">
+    <h3>Pattu Pavada Girls</h3>
+    <p>PRICE: RS 950</p>
+    <div>
+      <button onclick="addToCart('Pattu Pavada Girls', 950, 'MINI IMG/GIRLS 6.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Pattu Pavada Girls', 950, 'MINI IMG/GIRLS 6.jpg')">Buy Now</button>
+    </div>
+    </div>
+  
+  <div class="subcategory">
+    <img src="MINI IMG/GIRLS 7.jpg" alt="17">
+    <h3>Lehenga Choli Girls</h3>
+    <p>PRICE: RS 800</p>
+    <div>
+      <button onclick="addToCart('Lehenga Choli Girls', 800, 'MINI IMG/GIRLS 7.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Lehenga Choli Girls', 800, 'MINI IMG/GIRLS 7.jpg')">Buy Now</button>
+    </div>
+    </div>
+  
+  <div class="subcategory">
+    <img src="MINI IMG/GIRLS 8.jpg" alt="18">
+    <h3>EKANTA Saatvika Megenta Girls</h3>
+    <p>PRICE: RS 980</p>
+    <div>
+      <button onclick="addToCart('EKANTA Saatvika Megenta Girls', 980, 'MINI IMG/GIRLS 8.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('EKANTA Saatvika Megenta Girls', 980, 'MINI IMG/GIRLS 8.jpg')">Buy Now</button>
+    </div>
+  </div>
+
+   <div class="subcategory">
+     <img src="MINI IMG/GIRLS 9.jpg" alt="19">
+     <h3>Pattu Pavadai Sattai Girls</h3>
+     <p>PRICE: RS 2000</p>
+    <div>
+      <button onclick="addToCart('Pattu Pavadai Sattai Girls', 2000, 'MINI IMG/GIRLS 9.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Pattu Pavadai Sattai Girls', 2000, 'MINI IMG/GIRLS 9.jpg')">Buy Now</button>
+    </div>
+   </div>
+
+    <div class="subcategory">
+      <img src="MINI IMG/GIRLS 10.jpg" alt="20">
+      <h3>Pattu Pavadai Lenga Girls</h3>
+      <p>PRICE: RS 1300</p>
+    <div>
+      <button onclick="addToCart('Pattu Pavadai Lenga Girls', 1300, 'MINI IMG/GIRLS 10.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Pattu Pavadai Lenga Girls', 1300, 'MINI IMG/GIRLS 10.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+    <div class="subcategory">
+        <img src="MINI IMG/BABYS 1.jpg" alt="21">
+        <h3>BURTS BEES BABY</h3>
+        <p>PRICE: RS 400</p>
+    <div>
+      <button onclick="addToCart('BURTS BEES BABY', 400, 'MINI IMG/BABYS 1.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('BURTS BEES BABY', 400, 'MINI IMG/BABYS 1.jpg')">Buy Now</button>
+    </div>
+    </div>
+    <div class="subcategory">
+        <img src="MINI IMG/BABYS 2.jpg" alt="22">
+        <h3>STEM BABY</h3>
+        <p>PRICE: RS 340</p>
+    <div>
+      <button onclick="addToCart('STEM BABY', 340, 'MINI IMG/BABYS 2.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('STEM BABY', 340, 'MINI IMG/BABYS 2.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+    <div class="subcategory">
+        <img src="MINI IMG/BABYS 3.jpg" alt="23">
+        <h3>CIRCO BABY</h3>
+        <p>PRICE: RS 600</p>
+    <div>
+      <button onclick="addToCart('CIRCO BABY', 600, 'MINI IMG/BABYS 3.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('CIRCO BABY', 600, 'MINI IMG/BABYS 3.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+    <div class="subcategory">
+        <img src="MINI IMG/BABYS 4.jpg" alt="24">
+        <h3>BABY GAP</h3>
+        <p>PRICE: RS 300</p>
+    <div>
+      <button onclick="addToCart('BABY GAP', 300, 'MINI IMG/BABYS 4.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('BABY GAP', 300, 'MINI IMG/BABYS 4.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+    <div class="subcategory">
+        <img src="MINI IMG/BABYS 5.jpg" alt="25">
+        <h3>HANNA ANDERSSON BABY</h3>
+        <p>PRICE: RS 1000</p>
+    <div>
+      <button onclick="addToCart('HANNA ANDERSSON BABY', 1000, 'MINI IMG/BABYS 5.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('HANNA ANDERSSON BABY', 1000, 'MINI IMG/BABYS 5.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+
+      <div class="subcategory">
+    <img src="MINI IMG/BABYS 6.jpg" alt="26">
+    <h3>RIKSHAW DESIGN BABY</h3>
+    <p>PRICE: RS 500</p>
+    <div>
+      <button onclick="addToCart('RIKSHAW DESIGN BABY', 500, 'MINI IMG/BABYS 6.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('RIKSHAW DESIGN BABY', 500, 'MINI IMG/BABYS 6.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+      <div class="subcategory">
+    <img src="MINI IMG/BABYS 7.jpg" alt="27">
+    <h3>SPLENDID BABY</h3>
+    <p>PRICE: RS 300</p>
+    <div>
+      <button onclick="addToCart('SPLENDID BABY', 300, 'MINI IMG/BABYS 7.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('SPLENDID BABY', 300, 'MINI IMG/BABYS 7.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+      <div class="subcategory">
+    <img src="MINI IMG/BABYS 8.jpg" alt="28">
+    <h3>PAIGELAUREN BABY</h3>
+    <p>PRICE: RS 750</p>
+    <div>
+      <button onclick="addToCart('PAIGELAUREN BABY', 750, 'MINI IMG/BABYS 8.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('PAIGELAUREN BABY', 750, 'MINI IMG/BABYS 8.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+      <div class="subcategory">
+    <img src="MINI IMG/BABYS 9.jpg" alt="29">
+    <h3>TANE ORGANICS BABY</h3>
+    <p>PRICE: RS 550</p>
+    <div>
+      <button onclick="addToCart('TANE ORGANICS BABY', 550, 'MINI IMG/BABYS 9.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('TANE ORGANICS BABY', 550, 'MINI IMG/BABYS 9.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+      <div class="subcategory">
+    <img src="MINI IMG/BABYS 10.jpg" alt="30">
+    <h3>ROMPERS BABY</h3>
+    <p>PRICE: RS 800</p>
+    <div>
+      <button onclick="addToCart('ROMPERS BABY', 800, 'MINI IMG/BABYS 10.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('ROMPERS BABY', 800, 'MINI IMG/BABYS 10.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+</div>
+
+
+<script>
+  function updateCartCount() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    document.getElementById("cartCount").innerText = cart.length;
+  }
+
+  function addToCart(name, price, image) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push({ name, price, image });
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+    alert(name + " added to cart!");
+  }
+
+    function buyNow(name, price, image) {
+    let cart = [{ name, price, image }];
+    localStorage.setItem("cart", JSON.stringify(cart));
+    window.location.href = "Paynow.html";
+  }
+
+  updateCartCount();
+</script>
+
+</body>
+</html>

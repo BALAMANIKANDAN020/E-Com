@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Orders - ALL IN ONE</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    header h1 {
+      color: #2c3e50;
+      font-size: 28px;
+    }
+
+    .btn-back {
+      padding: 10px 25px;
+      background: #6c757d;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+
+    .btn-back:hover {
+      background: #5a6268;
+      transform: translateY(-2px);
+    }
+
+    .filters {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      margin-bottom: 20px;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .filter-label {
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    .filter-btn {
+      padding: 8px 20px;
+      border: 2px solid #e0e0e0;
+      background: white;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .filter-btn:hover {
+      border-color: #667eea;
+      color: #667eea;
+      transform: translateY(-2px);
+    }
+
+    .filter-btn.active {
+      background: #667eea;
+      color: white;
+      border-color: #667eea;
+    }
+
+    .orders-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .order-card {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .order-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .order-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #f0f0f0;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .order-info {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .order-id {
+      font-size: 18px;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 5px;
+    }
+
+    .order-date {
+      color: #6c757d;
+      font-size: 14px;
+    }
+
+    .order-status {
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .status-processing {
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    .status-shipped {
+      background: #d1ecf1;
+      color: #0c5460;
+    }
+
+    .status-delivered {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .status-cancelled {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
+    .order-items {
+      margin-bottom: 20px;
+    }
+
+    .item-row {
+      display: flex;
+      gap: 15px;
+      padding: 12px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+
+    .item-img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 2px solid #e0e0e0;
+    }
+
+    .item-details {
+      flex: 1;
+    }
+
+    .item-name {
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 3px;
+      font-size: 15px;
+    }
+
+    .item-price {
+      color: #667eea;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .order-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 15px;
+      border-top: 2px solid #f0f0f0;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .order-total {
+      font-size: 18px;
+      font-weight: 700;
+      color: #2c3e50;
+    }
+
+    .order-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-track, .btn-cancel {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-track {
+      background: #667eea;
+      color: white;
+    }
+
+    .btn-track:hover {
+      background: #5568d3;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-cancel {
+      background: #dc3545;
+      color: white;
+    }
+
+    .btn-cancel:hover {
+      background: #c82333;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .empty-state h2 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+      font-size: 24px;
+    }
+
+    .empty-state p {
+      color: #6c757d;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    .btn-shop {
+      padding: 12px 30px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s;
+    }
+
+    .btn-shop:hover {
+      background: #5568d3;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    @media (max-width: 768px) {
+      header {
+        text-align: center;
+      }
+
+      header h1 {
+        font-size: 24px;
+      }
+
+      .order-footer {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .order-actions {
+        width: 100%;
+      }
+
+      .btn-track, .btn-cancel {
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📦 My Orders</h1>
+      <a href="index.html" class="btn-back">← Back to Home</a>
+    </header>
+
+    <div class="filters">
+      <span class="filter-label">Filter:</span>
+      <button class="filter-btn active" data-filter="all" onclick="filterOrders('all', this)">All Orders</button>
+      <button class="filter-btn" data-filter="processing" onclick="filterOrders('processing', this)">Processing</button>
+      <button class="filter-btn" data-filter="shipped" onclick="filterOrders('shipped', this)">Shipped</button>
+      <button class="filter-btn" data-filter="delivered" onclick="filterOrders('delivered', this)">Delivered</button>
+      <button class="filter-btn" data-filter="cancelled" onclick="filterOrders('cancelled', this)">Cancelled</button>
+    </div>
+
+    <div class="orders-grid" id="ordersGrid"></div>
+
+    <div class="empty-state" id="emptyState" style="display: none;">
+      <h2>📭 No Orders Yet</h2>
+      <p>You haven't placed any orders yet. Start shopping now!</p>
+      <a href="index.html" class="btn-shop">Start Shopping</a>
+    </div>
+  </div>
+
+  <script>
+    let currentFilter = 'all';
+
+    function loadOrders() {
+      const allOrders = JSON.parse(sessionStorage.getItem('allOrders') || '{}');
+      const ordersArray = Object.values(allOrders);
+
+      const ordersGrid = document.getElementById('ordersGrid');
+      const emptyState = document.getElementById('emptyState');
+
+      if (ordersArray.length === 0) {
+        ordersGrid.style.display = 'none';
+        emptyState.style.display = 'block';
+        return;
+      }
+
+      ordersGrid.style.display = 'grid';
+      emptyState.style.display = 'none';
+
+      // Filter orders
+      let filteredOrders = ordersArray;
+      if (currentFilter !== 'all') {
+        filteredOrders = ordersArray.filter(order => order.status === currentFilter);
+      }
+
+      // Sort by date (newest first)
+      filteredOrders.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+      ordersGrid.innerHTML = '';
+
+      if (filteredOrders.length === 0) {
+        ordersGrid.innerHTML = `
+          <div class="empty-state">
+            <h2>No orders found</h2>
+            <p>No orders match the selected filter.</p>
+          </div>
+        `;
+        return;
+      }
+
+      filteredOrders.forEach(order => {
+        const orderCard = createOrderCard(order);
+        ordersGrid.appendChild(orderCard);
+      });
+    }
+
+    function createOrderCard(order) {
+      const card = document.createElement('div');
+      card.className = 'order-card';
+
+      const orderDate = new Date(order.date);
+      const formattedDate = orderDate.toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+
+      let itemsHTML = '';
+      order.items.forEach(item => {
+        itemsHTML += `
+          <div class="item-row">
+            <img src="${item.image || 'https://via.placeholder.com/60'}" 
+                 alt="${item.name}" 
+                 class="item-img"
+                 onerror="this.src='https://via.placeholder.com/60'">
+            <div class="item-details">
+              <div class="item-name">${item.name}</div>
+              <div class="item-price">₹${item.price.toLocaleString()} × ${item.quantity || 1}</div>
+            </div>
+          </div>
+        `;
+      });
+
+      const showCancelBtn = order.status === 'processing' || order.status === 'shipped';
+
+      card.innerHTML = `
+        <div class="order-header">
+          <div class="order-info">
+            <div class="order-id">Order #${order.orderId}</div>
+            <div class="order-date">Placed on ${formattedDate}</div>
+          </div>
+          <div class="order-status status-${order.status}">
+            ${order.status.charAt(0).toUpperCase() + order.status.slice(1)}
+          </div>
+        </div>
+
+        <div class="order-items">
+          ${itemsHTML}
+        </div>
+
+        <div class="order-footer">
+          <div class="order-total">Total: ₹${order.total.toLocaleString()}</div>
+          <div class="order-actions">
+            <button class="btn-track" onclick="trackThisOrder('${order.orderId}')">Track Order</button>
+            ${showCancelBtn ? `<button class="btn-cancel" onclick="cancelOrder('${order.orderId}')">Cancel Order</button>` : ''}
+          </div>
+        </div>
+      `;
+
+      return card;
+    }
+
+    function filterOrders(status, element) {
+      currentFilter = status;
+
+      // Update active button
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      element.classList.add('active');
+
+      loadOrders();
+    }
+
+    function trackThisOrder(orderId) {
+      window.location.href = `tracking.html?orderId=${orderId}`;
+    }
+
+    function cancelOrder(orderId) {
+      if (!confirm('⚠️ Are you sure you want to cancel this order?')) {
+        return;
+      }
+
+      const allOrders = JSON.parse(sessionStorage.getItem('allOrders') || '{}');
+      
+      if (allOrders[orderId]) {
+        allOrders[orderId].status = 'cancelled';
+        
+        // Add cancellation to timeline
+        allOrders[orderId].timeline = allOrders[orderId].timeline.map(item => {
+          if (!item.completed && item.status !== 'Order Placed') {
+            return { ...item, completed: false };
+          }
+          return item;
+        });
+        
+        allOrders[orderId].timeline.push({
+          status: 'Cancelled',
+          time: new Date().toISOString(),
+          description: 'Your order has been cancelled successfully',
+          completed: true
+        });
+
+        sessionStorage.setItem('allOrders', JSON.stringify(allOrders));
+        
+        alert('✅ Order cancelled successfully!');
+        loadOrders();
+      } else {
+        alert('❌ Order not found!');
+      }
+    }
+
+    // Load orders on page load
+    window.addEventListener('load', loadOrders);
+  </script>
+</body>
+</html>

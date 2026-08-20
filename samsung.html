@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>SAMSUNG - Subcategories</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 20px 30px;
+      text-align: center;
+      font-size: 26px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+
+    .cart-icon {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 16px;
+      font-weight: bold;
+      background: #ff9800;
+      padding: 6px 14px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .cart-icon:hover {
+      background: #e67e22;
+      color: #fff;
+    }
+
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 25px;
+      padding: 40px 50px;
+    }
+
+
+    .subcategory {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      padding: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .subcategory img {
+      max-width: 100%;
+      height: 180px;
+      object-fit: contain;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .subcategory h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: #2c3e50;
+    }
+
+    .subcategory p {
+      font-size: 15px;
+      color: #555;
+      margin-bottom: 12px;
+    }
+
+    .subcategory:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+
+    button {
+      background: #ff9800;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #fff;
+      font-size: 14px;
+      transition: background 0.3s, transform 0.2s;
+    }
+    button:hover {
+      background: #e67e22;
+      transform: scale(1.05);
+    }
+
+    .btn-buy {
+      background: #4caf50;
+    }
+    .btn-buy:hover {
+      background: #2e7d32;
+      transform: scale(1.05);
+    }
+
+
+    @media (max-width: 1200px) {
+      .container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>SAMSUNG</h1>
+    <div class="cart-icon" onclick="window.location.href='cart.html'">
+    🛒 Cart (<span id="cartCount">0</span>)
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="subcategory">
+    <img src="MINI IMG/SAMSUNG 1.jpg" alt="1">
+    <h3>SAMSUNG Galaxy M36 5G</h3>
+    <p>PRICE: RS 20,000</p>
+    <div>
+      <button onclick="addToCart('SAMSUNG Galaxy M36 5G', 20000, 'MINI IMG/SAMSUNG 1.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('SAMSUNG Galaxy M36 5G', 20000, 'MINI IMG/SAMSUNG 1.jpg')">Buy Now</button>
+    </div>
+    </div>
+  
+  <div class="subcategory">
+    <img src="MINI IMG/SAMSUNG 2.jpg" alt="2">
+    <h3>SAMSUNG Galaxy F56 5G</h3>
+    <p>PRICE: RS 23,000</p>
+    <div>
+      <button onclick="addToCart('SAMSUNG Galaxy F56 5G', 23000, 'MINI IMG/SAMSUNG 2.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('SAMSUNG Galaxy F56 5G', 23000, 'MINI IMG/SAMSUNG 2.jpg')">Buy Now</button>
+    </div>
+    </div>
+  
+  <div class="subcategory">
+    <img src="MINI IMG/SAMSUNG 3.jpg" alt="3">
+    <h3>SAMSUNG S24 FE</h3>
+    <p>PRICE: RS 40,000</p>
+    <div>
+      <button onclick="addToCart('SAMSUNG S24 FE', 40000, 'MINI IMG/SAMSUNG 3.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('SAMSUNG S24 FE', 40000, 'MINI IMG/SAMSUNG 3.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+   <div class="subcategory">
+     <img src="MINI IMG/SAMSUNG 4.jpg" alt="4">
+     <h3>SAMSUNG Galaxy F36 5G</h3>
+     <p>PRICE: RS 20,000</p>
+    <div>
+      <button onclick="addToCart('SAMSUNG Galaxy F36 5G', 20000, 'MINI IMG/SAMSUNG 4.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('SAMSUNG Galaxy F36 5G', 20000, 'MINI IMG/SAMSUNG 4.jpg')">Buy Now</button>
+    </div>
+     </div>
+
+    <div class="subcategory">
+      <img src="MINI IMG/SAMSUNG 5.jpg" alt="5">
+      <h3>SAMSUNG Galaxy Z Flip3 5G</h3>
+      <p>PRICE: RS 60,000</p>
+    <div>
+      <button onclick="addToCart('SAMSUNG Galaxy Z Flip3 5G', 60000, 'MINI IMG/SAMSUNG 5.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('SAMSUNG Galaxy Z Flip3 5G', 60000, 'MINI IMG/SAMSUNG 5.jpg')">Buy Now</button>
+    </div>
+      </div>
+
+        <div class="subcategory">
+      <img src="MINI IMG/SAMSUNG 6.jpg" alt="6">
+      <h3>SAMSUNG GalaxyZ Flip7</h3>
+      <p>PRICE: RS 50,000</p>
+    <div>
+      <button onclick="addToCart('SAMSUNG GalaxyZ Flip7', 50000, 'MINI IMG/SAMSUNG 6.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('SAMSUNG GalaxyZ Flip7', 50000, 'MINI IMG/SAMSUNG 6.jpg')">Buy Now</button>
+    </div>
+      </div>
+
+        <div class="subcategory">
+      <img src="MINI IMG/SAMSUNG 7.jpg" alt="7">
+      <h3>SAMSUNG Galaxy S25 Edge</h3>
+      <p>PRICE: RS 23,000</p>
+    <div>
+      <button onclick="addToCart('SAMSUNG Galaxy S25 Edge', 23000, 'MINI IMG/SAMSUNG 7.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('SAMSUNG Galaxy S25 Edge', 23000, 'MINI IMG/SAMSUNG 7.jpg')">Buy Now</button>
+    </div>
+      </div>
+
+        <div class="subcategory">
+      <img src="MINI IMG/SAMSUNG 8.jpg" alt="8">
+      <h3>SAMSUNG Galaxy A33 5G</h3>
+      <p>PRICE: RS 45,000</p>
+    <div>
+      <button onclick="addToCart('SAMSUNG Galaxy A33 5G', 45000, 'MINI IMG/SAMSUNG 8.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('SAMSUNG Galaxy A33 5G', 45000, 'MINI IMG/SAMSUNG 8.jpg')">Buy Now</button>
+    </div>
+      </div>
+
+
+      <div class="subcategory">
+      <img src="MINI IMG/SAMSUNG 9.jpg" alt="9">
+      <h3>SAMSUNG Galaxy M56 5G</h3>
+      <p>PRICE: RS 25,000</p>
+    <div>
+      <button onclick="addToCart('SAMSUNG Galaxy M56 5G', 23000, 'MINI IMG/SAMSUNG 9.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('SAMSUNG Galaxy M56 5G', 23000, 'MINI IMG/SAMSUNG 9.jpg')">Buy Now</button>
+    </div>
+      </div>
+
+        <div class="subcategory">
+      <img src="MINI IMG/SAMSUNG 10.jpg" alt="10">
+      <h3>SAMSUNG Galaxy S22 Ultra</h3>
+      <p>PRICE: RS 89,000</p>
+    <div>
+      <button onclick="addToCart('SAMSUNG Galaxy S22 Ultra', 89000, 'MINI IMG/SAMSUNG 10.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('SAMSUNG Galaxy S22 Ultra', 89000, 'MINI IMG/SAMSUNG 10.jpg')">Buy Now</button>
+    </div>
+      </div>
+
+</div>
+
+<script>
+  function updateCartCount() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    document.getElementById("cartCount").innerText = cart.length;
+  }
+
+  function addToCart(name, price, image) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push({ name, price, image });
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+    alert(name + " added to cart!");
+  }
+
+    function buyNow(name, price, image) {
+    let cart = [{ name, price, image }];
+    localStorage.setItem("cart", JSON.stringify(cart));
+    window.location.href = "Paynow.html";
+  }
+
+  updateCartCount();
+</script>
+
+
+
+</body>
+</html>

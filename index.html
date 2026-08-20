@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ALL IN ONE DEALS</title>
+  <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  color: #333;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+header {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 40px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+header h1 {
+  font-size: 26px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #ff6ec4, #007bff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo {
+  font-size: 18px;
+  font-weight: bold;
+  color: #007bff;
+}
+
+.search {
+  flex: 1;
+  max-width: 420px;
+  padding: 10px 16px;
+  margin: 0 25px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  font-size: 15px;
+  background: #f9f9f9;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.search::placeholder {
+  color: #888;
+}
+
+.search:focus {
+  background: #fff;
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0,123,255,0.4);
+  transform: scale(1.03);
+  outline: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 18px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+}
+
+.nav-links a:hover {
+  background: #007bff;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+main.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  padding: 50px 30px;
+  transition: opacity 0.3s ease;
+}
+
+main.grid.hidden {
+  display: none;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+  background: #fff;
+  border-radius: 16px;
+  text-decoration: none;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 0;
+  margin-bottom: 0;
+  transition: transform 0.3s ease;
+}
+
+.card .card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #333;
+  text-align: center;
+  padding: 20px;
+  width: 100%;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.card:hover img {
+  transform: scale(1.1);
+}
+
+.card:hover .card-title {
+  color: #007bff;
+}
+
+img.main-img {
+  height: 280px;
+  width: 280px;
+  object-fit: cover;
+  display: block;
+  margin: 40px auto;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  transition: all 0.5s ease;
+}
+
+img.main-img.hidden {
+  display: none;
+}
+
+img.main-img:hover {
+  transform: scale(1.08);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.25);
+}
+
+#searchResults {
+  padding: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+}
+
+.product-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.product-card img {
+  max-width: 100%;
+  height: 160px;
+  object-fit: contain;
+  margin-bottom: 12px;
+}
+
+.product-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.product-card p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.product-card button {
+  margin: 6px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  transition: all 0.25s ease;
+}
+
+.btn-cart {
+  background: #ff9800;
+}
+
+.btn-cart:hover {
+  background: #e68900;
+}
+
+.btn-buy {
+  background: #28a745;
+}
+
+.btn-buy:hover {
+  background: #218838;
+}
+
+footer {
+  background: #fff;
+  padding: 40px 20px;
+  margin-top: 60px;
+  text-align: center;
+  border-top: 1px solid #ddd;
+  box-shadow: 0 -4px 15px rgba(0,0,0,0.08);
+}
+
+footer p {
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #666;
+}
+
+footer .socials {
+  margin-top: 15px;
+}
+
+footer .socials a {
+  margin: 0 12px;
+  font-size: 22px;
+  color: #333;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+footer .socials a:hover {
+  color: #007bff;
+  transform: scale(1.1);
+}
+
+ </style>
+</head>
+<body>
+  <header>
+    <h1>ALL IN ONE</h1>
+    <div class="logo">SHOP</div>
+    <input type="text" id="searchBar" class="search" placeholder="Search products...">
+    <div class="nav-links">
+      <a href="index.html">HOME</a>
+      <a href="cart.html">🛒CART</a>
+      <a href="myorders.html">My Orders</a>
+      <a href="tracking.html">Track Order</a>
+      <a href="login.html">LOGIN</a>
+    </div>
+  </header>
+
+<main class="grid" id="categoryGrid">
+    <a href="electronics.html" class="card">
+      <img src="MINI IMG/electronics.png" alt="Electronics">
+      <span class="card-title">Electronics</span>
+    </a>
+    <a href="fashion.html" class="card">
+      <img src="MINI IMG/fashion.webp" alt="Fashion">
+      <span class="card-title">Fashion</span>
+    </a>
+    <a href="appliances.html" class="card">
+      <img src="MINI IMG/appliances.jpg" alt="Home Appliances">
+      <span class="card-title">Home Appliances</span>
+    </a>
+    <a href="Sports.html" class="card">
+      <img src="MINI IMG/sports.jpg" alt="Sports">
+      <span class="card-title">Sports</span>
+    </a>
+  </main>
+
+  <img src="MINI IMG/ALL IN ONE.jpg" alt="home" class="main-img" id="mainImage">
+
+  <div id="searchResults"></div>
+
+  <footer>
+    <p>© 2025 All-in-One Deals. All Rights Reserved.</p>
+    <div class="socials">
+      <a href="#">🌐</a>
+      <a href="#">📘</a>
+      <a href="#">🐦</a>
+      <a href="#">📸</a>
+    </div>
+  </footer>
+
+<script>
+const products = [
+  { name: "HP 255 G10", price: 42000, img: "MINI IMG/HP 1.jpg" },
+  { name: "HP 15, intel Ultra 5", price: 48000, img: "MINI IMG/HP 2.jpg" },
+  { name: "PrimeBook 2 Neo 2025", price: 30000, img: "MINI IMG/HP 3.jpg" },
+  { name: "HP 15s Ryzen7", price: 78000, img: "MINI IMG/HP 4.jpg" },
+  { name: "IdeaPad 1 AMD Ryzen5", price: 48000, img: "MINI IMG/LENOVO 1.jpg" },
+  { name: "LQQ AMD Ryzen 5", price: 83000, img: "MINI IMG/LENOVO 2.jpg" },
+  { name: "V14 G4(2024) Intel Core i3", price: 98960, img: "MINI IMG/LENOVO 3.jpg" },
+  { name: "Wyse 5470 (2025)", price: 50000, img: "MINI IMG/DELL 1.jpg" },
+  { name: "Inspiron 3530 Thin", price: 59000, img: "MINI IMG/DELL 2.jpg" },
+  { name: "Omen AMD Ryzen Al 7", price: 162000, img: "MINI IMG/DELL 3.jpg" },
+
+  { name: "vivo Y300 5G", price: 28000, img: "MINI IMG/vivo 1.jpg" },
+  { name: "vivo V27 5G", price: 35000, img: "MINI IMG/vivo 2.jpg" },
+  { name: "vivo V50", price: 40000, img: "MINI IMG/vivo 3.jpg" },
+  { name: "vivo Y58 5G", price: 25000, img: "MINI IMG/vivo 4.jpg" },
+  { name: "vivo V40 Series", price: 60000, img: "MINI IMG/vivo 5.jpg" },
+  { name: "vivo Y16", price: 16000, img: "MINI IMG/vivo 6.jpg" },
+  { name: "vivo T3X 5G", price: 68000, img: "MINI IMG/vivo 7.jpg" },
+  { name: "vivo T4X 5G", price: 70000, img: "MINI IMG/vivo 8.jpg" },
+  { name: "vivo Y17s", price: 24000, img: "MINI IMG/vivo 9.jpg" },
+  { name: "vivo Y29 5G", price: 30000, img: "MINI IMG/vivo 10.jpg" },
+
+  { name: "OPPO F27 5G", price: 28000, img: "MINI IMG/OPPO 1.jpg" },
+  { name: "OPPO K13 5G", price: 25000, img: "MINI IMG/OPPO 2.jpg" },
+  { name: "OPPO F29 Pro 5G", price: 32000, img: "MINI IMG/OPPO 3.jpg" },
+  { name: "OPPO A3x 5G", price: 25000, img: "MINI IMG/OPPO 4.jpg" },
+  { name: "OPPO F29 5G", price: 30000, img: "MINI IMG/OPPO 5.jpg" },
+  { name: "OPPO Reno11 Pro", price: 40000, img: "MINI IMG/OPPO 6.jpg" },
+  { name: "OPPO Reno7 Pro", price: 28000, img: "MINI IMG/OPPO 7.jpg" },
+  { name: "OPPO F25 Pro 5G", price: 25000, img: "MINI IMG/OPPO 8.jpg" },
+  { name: "OPPO K12x 5G", price: 25000, img: "MINI IMG/OPPO 9.jpg" },
+  { name: "OPPO K13 Turbo Pro 5G", price: 20000, img: "MINI IMG/OPPO 10.jpg" },
+
+    { name: "Redmi Note 11", price: 25000, img: "MINI IMG/REDMI 1.jpg" },
+  { name: "Redmi Note 10 Pro MAX", price: 27000, img: "MINI IMG/REDMI 2.jpg" },
+  { name: "Redmi A5", price: 20000, img: "MINI IMG/REDMI 3.jpg" },
+  { name: "Redmi Note 13 Pro+5G", price: 40000, img: "MINI IMG/REDMI 4.jpg" },
+  { name: "Redmi 14 SE", price: 35000, img: "MINI IMG/REDMI 5.jpg" },
+  { name: "Redmi Note 14 Pro 5G", price: 30000, img: "MINI IMG/REDMI 6.jpg" },
+  { name: "Redmi A4 5G", price: 28000, img: "MINI IMG/REDMI 7.jpg" },
+  { name: "Redmi 13 5G", price: 30000, img: "MINI IMG/REDMI 8.jpg" },
+  { name: "Redmi Note 13 Pro 5G", price: 35000, img: "MINI IMG/REDMI 9.jpg" },
+  { name: "Redmi Note 14 5G", price: 23000, img: "MINI IMG/REDMI 10.jpg" },
+
+    { name: "SAMSUNG Galaxy M36 5G", price: 20000, img: "MINI IMG/SAMSUNG 1.jpg" },
+  { name: "SAMSUNG Galaxy F56 5G", price: 23000, img: "MINI IMG/SAMSUNG 2.jpg" },
+  { name: "SAMSUNG S24 FE", price: 40000, img: "MINI IMG/SAMSUNG 3.jpg" },
+  { name: "SAMSUNG Galaxy F36 5G", price: 20000, img: "MINI IMG/SAMSUNG 4.jpg" },
+  { name: "SAMSUNG Galaxy Z Flip3 5G", price: 60000, img: "MINI IMG/SAMSUNG 5.jpg" },
+  { name: "SAMSUNG GalaxyZ Flip7", price: 50000, img: "MINI IMG/SAMSUNG 6.jpg" },
+  { name: "SAMSUNG Galaxy S25 Edge", price: 23000, img: "MINI IMG/SAMSUNG 7.jpg" },
+  { name: "SAMSUNG Galaxy A33 5G", price: 45000, img: "MINI IMG/SAMSUNG 8.jpg" },
+  { name: "SAMSUNG Galaxy M56 5G", price: 25000, img: "MINI IMG/SAMSUNG 9.jpg" },
+  { name: "SAMSUNG Galaxy S22 Ultra", price: 89000, img: "MINI IMG/SAMSUNG 10.jpg" },
+
+  { name: "Crystal UHD TV", price: 28000, img: "MINI IMG/TV 1.jpg" },
+  { name: "UHD TV", price: 35000, img: "MINI IMG/TV 2.jpg" },
+  { name: "QLED TV", price: 40000, img: "MINI IMG/TV 3.jpg" },
+  { name: "UHD 4K TV", price: 25000, img: "MINI IMG/TV 4.jpg" },
+  { name: "SMART TV AI", price: 60000, img: "MINI IMG/TV 5.jpg" },
+  { name: "OLED evo AI TV", price: 40000, img: "MINI IMG/TV 6.jpg" },
+  { name: "UHD AI TV", price: 45000, img: "MINI IMG/TV 7.jpg" },
+  { name: "QNED AI TV", price: 35000, img: "MINI IMG/TV 8.jpg" },
+  { name: "NanoCell AI TV", price: 43000, img: "MINI IMG/TV 9.jpg" },
+  { name: "BRAVIA 7 TV", price: 50000, img: "MINI IMG/TV 10.jpg" },
+
+  { name: "SAMSH-Polo T-Shirt", price: 468, img: "MINI IMG/MEN 1.jpg" },
+  { name: "latest mens printed T-Shirt", price: 200, img: "MINI IMG/MEN 2.jpg" },
+  { name: "Half-Sleeve T-Shirt", price: 250, img: "MINI IMG/MEN 3.jpg" },
+  { name: "COLORFUL TIE-DYE T-SHIRTS", price: 400, img: "MINI IMG/MEN 4.jpg" },
+  { name: "HOODED T-SHIRTS", price: 500, img: "MINI IMG/MEN 5.jpg" },
+  { name: "Formal shirt", price: 700, img: "MINI IMG/MEN 6.jpg" },
+  { name: "Full Sleeve Shirt", price: 680, img: "MINI IMG/MEN 7.jpg" },
+  { name: "Oxford shirt", price: 550, img: "MINI IMG/MEN 8.jpg" },
+  { name: "Overshirt", price: 400, img: "MINI IMG/MEN 9.jpg" },
+  { name: "Printed shirt", price: 300, img: "MINI IMG/MEN 10.jpg" },
+  { name: "SKINNY FIT JEANS", price: 800, img: "MINI IMG/MEN 11.jpg" },
+  { name: "Flared JEANS", price: 900, img: "MINI IMG/MEN 12.jpg" },
+  { name: "Tapered JEANS", price: 600, img: "MINI IMG/MEN 13.jpg" },
+  { name: "LOOSE FIT JEANS", price: 750, img: "MINI IMG/MEN 14.jpg" },
+  { name: "Carrot fit JEANS", price: 500, img: "MINI IMG/MEN 15.jpg" },
+
+  { name: "Soft Silk Sarees", price: 750, img: "MINI IMG/WOMEN 1.jpg" },
+  { name: "Lichi Silk Sarees", price: 600, img: "MINI IMG/WOMEN 2.jpg" },
+  { name: "Lycra Sarees", price: 450, img: "MINI IMG/WOMEN 3.jpg" },
+  { name: "Organza Sarees", price: 600, img: "MINI IMG/WOMEN 4.jpg" },
+  { name: "Satin Sarees", price: 800, img: "MINI IMG/WOMEN 5.jpg" },
+  { name: "Flared Salwar Suit", price: 650, img: "MINI IMG/WOMEN 6.jpg" },
+  { name: "Afghani Suit", price: 500, img: "MINI IMG/WOMEN 7.jpg" },
+  { name: "Straight Cut Salwar Suit", price: 700, img: "MINI IMG/WOMEN 8.jpg" },
+  { name: "Churidar Kurta Suit", price: 450, img: "MINI IMG/WOMEN 9.jpg" },
+  { name: "Lehenga Salwar Suit", price: 700, img: "MINI IMG/WOMEN 10.jpg" },
+  { name: "Casual Frocks", price: 500, img: "MINI IMG/WOMEN 11.jpg" },
+  { name: "Wrap Frocks", price: 380, img: "MINI IMG/WOMEN 12.jpg" },
+  { name: "Tunic Frocks", price: 670, img: "MINI IMG/WOMEN 13.jpg" },
+  { name: "Midi Frocks", price: 450, img: "MINI IMG/WOMEN 14.jpg" },
+  { name: "Blazer Frocks", price: 600, img: "MINI IMG/WOMEN 15.jpg" },
+
+  { name: "Coffee Brown Suit Boys", price: 1250, img: "MINI IMG/BOYS 1.jpg" },
+  { name: "Semi Formal Outfit Boys", price: 2000, img: "MINI IMG/BOYS 2.jpg" },
+  { name: "Blue Blazers Boys", price: 1550, img: "MINI IMG/BOYS 3.jpg" },
+  { name: "Zolario Kids Boys", price: 1200, img: "MINI IMG/BOYS 4.jpg" },
+  { name: "Zolario Kids Boys Sherwani", price: 1000, img: "MINI IMG/BOYS 5.jpg" },
+  { name: "Navy Blue Shirts Boys", price: 860, img: "MINI IMG/BOYS 6.jpg" },
+  { name: "Checked Shirt and Jeans Boys", price: 900, img: "MINI IMG/BOYS 7.jpg" },
+  { name: "Party Kids Dhoti Boys", price: 1500, img: "MINI IMG/BOYS 8.jpg" },
+  { name: "AMIRTHA FASHION BOYS", price: 1000, img: "MINI IMG/BOYS 9.jpg" },
+  { name: "Traditional Dhoti Boys", price: 1200, img: "MINI IMG/BOYS 10.jpg" },
+  { name: "Party Wear Gown Girls", price: 700, img: "MINI IMG/GIRLS 1.jpg" },
+  { name: "Black Georgette Palazzo Girls", price: 650, img: "MINI IMG/GIRLS 2.jpg" },
+  { name: "Black Silk Lehenga Girls", price: 700, img: "MINI IMG/GIRLS 3.jpg" },
+  { name: "Morpich Gown Girls", price: 800, img: "MINI IMG/GIRLS 4.jpg" },
+  { name: "Palazzo Coti Girls", price: 760, img: "MINI IMG/GIRLS 5.jpg" },
+  { name: "Pattu Pavada Girls", price: 950, img: "MINI IMG/GIRLS 6.jpg" },
+  { name: "Lehenga Choli Girls", price: 800, img: "MINI IMG/GIRLS 7.jpg" },
+  { name: "EKANTA Saatvika Megenta Girls", price: 980, img: "MINI IMG/GIRLS 8.jpg" },
+  { name: "Pattu Pavadai Sattai Girls", price: 2000, img: "MINI IMG/GIRLS 9.jpg" },
+  { name: "Pattu Pavadai Lenga Girls", price: 1300, img: "MINI IMG/GIRLS 10.jpg" },
+  { name: "BURTS BEES BABY", price: 400, img: "MINI IMG/BABYS 1.jpg" },
+  { name: "STEM BABY", price: 340, img: "MINI IMG/BABYS 2.jpg" },
+  { name: "CIRCO BABY", price: 600, img: "MINI IMG/BABYS 3.jpg" },
+  { name: "BABY GAP", price: 300, img: "MINI IMG/BABYS 4.jpg" },
+  { name: "HANNA ANDERSSON BABY", price: 1000, img: "MINI IMG/BABYS 5.jpg" },
+  { name: "RIKSHAW DESIGN BABY", price: 500, img: "MINI IMG/BABYS 6.jpg" },
+  { name: "SPLENDID BABY", price: 300, img: "MINI IMG/BABYS 7.jpg" },
+  { name: "PAIGELAUREN BABY", price: 750, img: "MINI IMG/BABYS 8.jpg" },
+  { name: "TANE ORGANICS BABY", price: 550, img: "MINI IMG/BABYS 9.jpg" },
+  { name: "ROMPERS BABY", price: 800, img: "MINI IMG/BABYS 10.jpg" },
+
+  { name: "PANASONIC FRIDGE", price: 30000, img: "MINI IMG/FRIDGE 1.jpg" },
+  { name: "LG FRIDGE", price: 35000, img: "MINI IMG/FRIDGE 2.jpg" },
+  { name: "AGA FRIDGE", price: 45000, img: "MINI IMG/FRIDGE 3.jpg" },
+  { name: "HISENSE FRIDGE", price: 40000, img: "MINI IMG/FRIDGE 4.jpg" },
+  { name: "SAMSUNG FRIDGE", price: 60000, img: "MINI IMG/FRIDGE 5.jpg" },
+
+  { name: "WHIRLPOOL WASHING MACHINE", price: 30000, img: "MINI IMG/WASHING MACHINE 1.jpg" },
+  { name: "PANASONIC WASHING MACHINE", price: 35000, img: "MINI IMG/WASHING MACHINE 2.jpg" },
+  { name: "BOSCH WASHING MACHINE", price: 45000, img: "MINI IMG/WASHING MACHINE 3.jpg" },
+  { name: "HAIER WASHING MACHINE", price: 40000, img: "MINI IMG/WASHING MACHINE 4.jpg" },
+  { name: "HAIER WASHING MACHINE", price: 60000, img: "MINI IMG/WASHING MACHINE 5.jpg" },
+
+  { name: "USHA AIRCOOLER", price: 30000, img: "MINI IMG/AIR COOLER 1.jpg" },
+  { name: "BAJAJ AIRCOOLER", price: 35000, img: "MINI IMG/AIR COOLER 2.jpg" },
+  { name: "CROMPTON AIRCOOLER", price: 45000, img: "MINI IMG/AIR COOLER 3.jpg" },
+  { name: "SYMPHONY AIRCOOLER", price: 40000, img: "MINI IMG/AIR COLLER 4.jpg" },
+  { name: "KENSTAR AIRCOOLER", price: 60000, img: "MINI IMG/AIR COLLER 5.jpg" },
+
+  { name: "MAYOR Cricket Ball Sports", price: 300, img: "MINI IMG/SPORTS 1.jpg" },
+  { name: "Cricket Batting Gloves Sports", price: 500, img: "MINI IMG/SPORTS 2.jpg" },
+  { name: "Table Tennis Table Sports", price: 30000, img: "MINI IMG/SPORTS 3.jpg" },
+  { name: "CRICKET BAT SPORTS", price: 1199, img: "MINI IMG/SPORTS 4.jpg" },
+  { name: "Strauss Basketball Sports", price: 750, img: "MINI IMG/SPORTS 5.jpg" },
+  { name: "CRICKET KIT SPORTS", price: 6000, img: "MINI IMG/SPORTS 6.jpg" },
+  { name: "SPORTS SKATING SHOES", price: 2000, img: "MINI IMG/SPORTS 7.jpg" },
+  { name: "CARROM BOARD SPORTS", price: 5000, img: "MINI IMG/SPORTS 8.jpg" },
+  { name: "Roller Skate Sports shoes", price: 1000, img: "MINI IMG/SPORTS 9.jpg" },
+  { name: "COSCO VOLLEYBALL SPORTS", price: 1200, img: "MINI IMG/SPORTS 10.jpg" },
+  { name: "NIVIA FOOTBALL SPORTS", price: 800, img: "MINI IMG/SPORTS 11.jpg" },
+  { name: "Table Tennis Sports", price: 650, img: "MINI IMG/SPORTS 12.jpg" },
+  { name: "LEADER SPORTS CYCLE", price: 16000, img: "MINI IMG/SPORTS 13.jpg" },
+  { name: "LYCAN BOXING BAG SPORTS", price: 1000, img: "MINI IMG/SPORTS 14.jpg" },
+  { name: "Monika Sports Boxing Gloves", price: 999, img: "MINI IMG/SPORTS 15.jpg" },
+  { name: "Monika Sports Badminton Kit", price: 800, img: "MINI IMG/SPORTS 16.jpg" },
+  { name: "DreamFit 30kg SPORTS", price: 8000, img: "MINI IMG/SPORTS 17.jpg" },
+  { name: "NIVIA FOOTBALL SPORTS SHOES", price: 2200, img: "MINI IMG/SPORTS 18.jpg" },
+  { name: "BIOFIT SPORTS", price: 1700, img: "MINI IMG/SPORTS 19.jpg" },
+  { name: "CLYMB SPORTS SHOES", price: 900, img: "MINI IMG/SPORTS 20.jpg" }
+];
+
+const cart = {};
+
+function addToCart(name, price) {
+  if (!cart[name]) {
+    cart[name] = { name, price, quantity: 1 };
+  } else {
+    cart[name].quantity++;
+  }
+  alert(name + " added to cart!");
+}
+
+function buyNow(name, price) {
+  cart[name] = { name, price, quantity: 1 };
+  alert("Redirecting to payment for " + name);
+}
+
+const searchBar = document.getElementById("searchBar");
+const resultsBox = document.getElementById("searchResults");
+const categoryGrid = document.getElementById("categoryGrid");
+const mainImage = document.getElementById("mainImage");
+
+searchBar.addEventListener("keyup", function() {
+  const query = this.value.toLowerCase().trim();
+  resultsBox.innerHTML = "";
+  
+  if (query) {
+    categoryGrid.classList.add("hidden");
+    mainImage.classList.add("hidden");
+    
+    const matches = products.filter(p => p.name.toLowerCase().includes(query));
+    if (matches.length > 0) {
+      matches.forEach(p => {
+        const div = document.createElement("div");
+        div.classList.add("product-card");
+        div.innerHTML = `
+          <img src="${p.img}" alt="${p.name}">
+          <h3>${p.name}</h3>
+          <p>Price: Rs ${p.price.toLocaleString()}</p>
+          <button class="btn-cart" onclick="addToCart('${p.name}', ${p.price})">Add to Cart</button>
+          <button class="btn-buy" onclick="buyNow('${p.name}', ${p.price})">Buy Now</button>
+        `;
+        resultsBox.appendChild(div);
+      });
+    } else {
+      resultsBox.innerHTML = "<p style='grid-column: 1/-1; text-align:center; color:#888;'>No products found</p>";
+    }
+  } else {
+    categoryGrid.classList.remove("hidden");
+    mainImage.classList.remove("hidden");
+  }
+});
+</script>
+</body>
+</html>

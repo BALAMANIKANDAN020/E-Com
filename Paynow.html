@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payment - ALL IN ONE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .checkout-box {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      max-width: 700px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h2 {
+      color: #2874f0;
+      margin-bottom: 25px;
+      font-size: 28px;
+    }
+
+    .product-list {
+      max-height: 450px;
+      overflow-y: auto;
+      margin: 20px 0;
+      padding: 10px;
+    }
+
+    .product-item {
+      display: flex;
+      gap: 15px;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      align-items: center;
+      transition: transform 0.2s;
+      position: relative;
+    }
+
+    .product-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .product-img {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 2px solid #e0e0e0;
+    }
+
+    .product-details {
+      flex: 1;
+      text-align: left;
+    }
+
+    .product-name {
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 5px;
+      font-size: 16px;
+    }
+
+    .product-price {
+      color: #667eea;
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .qty-btn {
+      background: #667eea;
+      color: white;
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .qty-btn:hover {
+      background: #5568d3;
+      transform: scale(1.1);
+    }
+
+    .qty-btn:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      transform: scale(1);
+    }
+
+    .qty-display {
+      background: white;
+      border: 2px solid #e0e0e0;
+      padding: 5px 15px;
+      border-radius: 6px;
+      font-weight: 600;
+      color: #2c3e50;
+      min-width: 50px;
+      text-align: center;
+    }
+
+    .remove-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #dc3545;
+      color: white;
+      border: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .remove-btn:hover {
+      background: #c82333;
+      transform: scale(1.1);
+    }
+
+    .item-subtotal {
+      color: #28a745;
+      font-weight: 700;
+      font-size: 16px;
+      margin-top: 5px;
+    }
+
+    .total-section {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 20px;
+      border-radius: 12px;
+      margin: 25px 0;
+    }
+
+    .total {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .btn-pay {
+      margin-top: 20px;
+      background: linear-gradient(135deg, #fb641b, #f95c1c);
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 600;
+    }
+
+    .btn-pay:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(251, 100, 27, 0.4);
+    }
+
+    .btn-back {
+      margin-top: 15px;
+      background: #6c757d;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      font-size: 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-back:hover {
+      background: #5a6268;
+    }
+
+    .payment-popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      visibility: hidden;
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .payment-popup.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .payment-form {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      width: 100%;
+      max-width: 450px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      position: relative;
+      animation: slideUp 0.3s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .payment-form h3 {
+      margin-top: 0;
+      margin-bottom: 25px;
+      color: #2874f0;
+      text-align: center;
+      font-size: 24px;
+    }
+
+    .payment-form label {
+      font-size: 14px;
+      margin-bottom: 8px;
+      display: block;
+      color: #555;
+      font-weight: 600;
+    }
+
+    .payment-form input,
+    .payment-form select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 18px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 15px;
+      transition: all 0.3s;
+    }
+
+    .payment-form input:focus,
+    .payment-form select:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .payment-form button {
+      background: linear-gradient(135deg, #fb641b, #f95c1c);
+      color: white;
+      border: none;
+      padding: 15px;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      width: 100%;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .payment-form button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(251, 100, 27, 0.4);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 28px;
+      cursor: pointer;
+      color: #999;
+      transition: color 0.3s;
+    }
+
+    .close-btn:hover {
+      color: #333;
+    }
+
+    .qr-scanner {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .qr-scanner img {
+      width: 220px;
+      height: 220px;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 10px;
+      background: white;
+    }
+
+    .empty-cart {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .empty-cart h3 {
+      color: #6c757d;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .checkout-box {
+        padding: 20px;
+      }
+
+      .payment-form {
+        margin: 20px;
+        padding: 25px;
+      }
+
+      .product-item {
+        flex-wrap: wrap;
+      }
+
+      .quantity-controls {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="checkout-box">
+    <h2>💳 Payment Details</h2>
+    
+    <div id="cartContent">
+      <div class="product-list" id="productList"></div>
+      
+      <div class="total-section">
+        <div class="total">Total Amount: ₹<span id="totalPrice">0</span></div>
+      </div>
+      
+      <button class="btn-pay" onclick="openPaymentPopup()">Proceed to Pay</button>
+      <br>
+      <a href="cart.html" class="btn-back">← Back to Cart</a>
+    </div>
+
+    <div id="emptyCart" class="empty-cart" style="display: none;">
+      <h3>Your cart is empty!</h3>
+      <a href="index.html" class="btn-back">Continue Shopping</a>
+    </div>
+  </div>
+
+  <div class="payment-popup" id="paymentPopup">
+    <div class="payment-form">
+      <span class="close-btn" onclick="closePaymentPopup()">×</span>
+      <h3>Select Payment Method</h3>
+
+      <label>Payment Method</label>
+      <select id="paymentMethod" onchange="showPaymentFields()">
+        <option value="upi">UPI Payment</option>
+        <option value="card">Credit/Debit Card</option>
+        <option value="cod">Cash on Delivery</option>
+        <option value="scan">Scan QR Code</option>
+      </select>
+
+      <div id="upiFields">
+        <label>UPI ID</label>
+        <input type="text" placeholder="yourname@upi" id="upiId"/>
+      </div>
+
+      <div id="cardFields" style="display:none;">
+        <label>Card Number</label>
+        <input type="text" placeholder="1234 5678 9012 3456" maxlength="19" id="cardNumber"/>
+        <label>Card Holder Name</label>
+        <input type="text" placeholder="John Doe" id="cardHolder"/>
+        <label>Expiry Date</label>
+        <input type="text" placeholder="MM/YY" maxlength="5" id="cardExpiry"/>
+        <label>CVV</label>
+        <input type="password" placeholder="123" maxlength="3" id="cardCvv"/>
+      </div>
+
+      <div id="codFields" style="display:none;">
+        <p style="text-align: center; color: #666; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+          💵 Cash will be collected upon delivery.<br>
+          Please keep exact amount ready.
+        </p>
+      </div>
+
+      <div id="scanFields" style="display:none;">
+        <div class="qr-scanner">
+          <p style="margin-bottom: 15px; color: #666;">📱 Scan QR code with any UPI app</p>
+          <img src="MINI IMG/googlepay.jpg" alt="QR Code" onerror="this.src='https://via.placeholder.com/220x220?text=QR+Code'" />
+        </div>
+      </div>
+
+      <button onclick="processPayment()">Pay ₹<span id="popupTotal">0</span></button>
+    </div>
+  </div>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let totalAmount = 0;
+
+    function displayCart() {
+      const productListEl = document.getElementById("productList");
+      const totalPriceEl = document.getElementById("totalPrice");
+      const popupTotal = document.getElementById("popupTotal");
+      const cartContent = document.getElementById("cartContent");
+      const emptyCart = document.getElementById("emptyCart");
+
+      if (cart.length === 0) {
+        cartContent.style.display = 'none';
+        emptyCart.style.display = 'block';
+        return;
+      }
+
+      cartContent.style.display = 'block';
+      emptyCart.style.display = 'none';
+      
+      totalAmount = 0;
+      productListEl.innerHTML = '';
+
+      cart.forEach((item, index) => {
+        const itemTotal = item.price * (item.quantity || 1);
+        totalAmount += itemTotal;
+
+        const productDiv = document.createElement('div');
+        productDiv.className = 'product-item';
+        productDiv.innerHTML = `
+          <button class="remove-btn" onclick="removeItem(${index})" title="Remove item">×</button>
+          <img src="${item.image || 'https://via.placeholder.com/70'}" alt="${item.name}" class="product-img" onerror="this.src='https://via.placeholder.com/70'">
+          <div class="product-details">
+            <div class="product-name">${item.name}</div>
+            <div class="product-price">₹${item.price.toLocaleString()} per item</div>
+            <div class="quantity-controls">
+              <button class="qty-btn" onclick="decreaseQuantity(${index})" ${(item.quantity || 1) <= 1 ? 'disabled' : ''}>−</button>
+              <div class="qty-display">${item.quantity || 1}</div>
+              <button class="qty-btn" onclick="increaseQuantity(${index})">+</button>
+            </div>
+            <div class="item-subtotal">Subtotal: ₹${itemTotal.toLocaleString()}</div>
+          </div>
+        `;
+        productListEl.appendChild(productDiv);
+      });
+
+      totalPriceEl.textContent = totalAmount.toLocaleString();
+      popupTotal.textContent = totalAmount.toLocaleString();
+    }
+
+    function increaseQuantity(index) {
+      if (!cart[index].quantity) {
+        cart[index].quantity = 1;
+      }
+      cart[index].quantity++;
+      localStorage.setItem("cart", JSON.stringify(cart));
+      displayCart();
+    }
+
+    function decreaseQuantity(index) {
+      if ((cart[index].quantity || 1) > 1) {
+        cart[index].quantity--;
+        localStorage.setItem("cart", JSON.stringify(cart));
+        displayCart();
+      }
+    }
+
+    function removeItem(index) {
+      if (confirm('Are you sure you want to remove this item?')) {
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        displayCart();
+      }
+    }
+
+    function openPaymentPopup() {
+      if (cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+      }
+      document.getElementById("paymentPopup").classList.add("active");
+    }
+
+    function closePaymentPopup() {
+      document.getElementById("paymentPopup").classList.remove("active");
+    }
+
+    function showPaymentFields() {
+      const method = document.getElementById("paymentMethod").value;
+      document.getElementById("upiFields").style.display = method === "upi" ? "block" : "none";
+      document.getElementById("cardFields").style.display = method === "card" ? "block" : "none";
+      document.getElementById("codFields").style.display = method === "cod" ? "block" : "none";
+      document.getElementById("scanFields").style.display = method === "scan" ? "block" : "none";
+    }
+
+    function processPayment() {
+      const method = document.getElementById("paymentMethod").value;
+
+      // Validate payment method
+      if (method === "upi") {
+        const upiId = document.getElementById("upiId").value.trim();
+        if (!upiId || !upiId.includes("@")) {
+          alert("⚠️ Please enter a valid UPI ID (e.g., yourname@upi)");
+          return;
+        }
+      } else if (method === "card") {
+        const cardNumber = document.getElementById("cardNumber").value.replace(/\s/g, '');
+        const cardHolder = document.getElementById("cardHolder").value.trim();
+        const expiry = document.getElementById("cardExpiry").value.trim();
+        const cvv = document.getElementById("cardCvv").value.trim();
+
+        if (cardNumber.length < 13 || cardHolder === "" || expiry.length < 4 || cvv.length < 3) {
+          alert("⚠️ Please fill all card details correctly");
+          return;
+        }
+      }
+
+      // Generate order ID
+      const orderId = generateOrderId();
+      
+      // Create order object
+      const order = {
+        orderId: orderId,
+        date: new Date().toISOString(),
+        status: 'processing',
+        items: cart.map(item => ({
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity || 1,
+          image: item.image || 'https://via.placeholder.com/80'
+        })),
+        total: totalAmount,
+        address: 'Hosūr, Tamil Nadu, IN',
+        deliveryDate: new Date(Date.now() + 5*24*60*60*1000).toISOString(),
+        paymentMethod: method.toUpperCase(),
+        timeline: [
+          {
+            status: 'Order Placed',
+            time: new Date().toISOString(),
+            description: 'Your order has been successfully placed',
+            completed: true
+          },
+          {
+            status: 'Processing',
+            time: new Date(Date.now() + 24*60*60*1000).toISOString(),
+            description: 'Your order is being processed',
+            completed: false
+          },
+          {
+            status: 'Shipped',
+            time: new Date(Date.now() + 2*24*60*60*1000).toISOString(),
+            description: 'Your order has been shipped',
+            completed: false
+          },
+          {
+            status: 'Out for Delivery',
+            time: new Date(Date.now() + 4*24*60*60*1000).toISOString(),
+            description: 'Your order is out for delivery',
+            completed: false
+          },
+          {
+            status: 'Delivered',
+            time: new Date(Date.now() + 5*24*60*60*1000).toISOString(),
+            description: 'Your order has been delivered',
+            completed: false
+          }
+        ]
+      };
+
+      // Save order to sessionStorage
+      const allOrders = JSON.parse(sessionStorage.getItem('allOrders') || '{}');
+      allOrders[orderId] = order;
+      sessionStorage.setItem('allOrders', JSON.stringify(allOrders));
+
+      // Clear cart
+      localStorage.removeItem("cart");
+      
+      // Show success message
+      alert(`✅ Payment of ₹${totalAmount.toLocaleString()} successful!\n\nOrder ID: ${orderId}\n\nRedirecting to success page...`);
+      
+      // Redirect to success page
+      window.location.href = "success.html";
+    }
+
+    function generateOrderId() {
+      const timestamp = Date.now();
+      const random = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+      return 'ORD' + timestamp + random;
+    }
+
+    // Initialize page
+    window.addEventListener('load', displayCart);
+  </script>
+</body>
+</html>

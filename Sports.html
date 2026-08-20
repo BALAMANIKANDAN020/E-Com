@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>SPORTS - Subcategories</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 20px 30px;
+      text-align: center;
+      font-size: 26px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+
+    .cart-icon {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 16px;
+      font-weight: bold;
+      background: #ff9800;
+      padding: 6px 14px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .cart-icon:hover {
+      background: #e67e22;
+      color: #fff;
+    }
+
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 25px;
+      padding: 40px 50px;
+    }
+
+
+    .subcategory {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      padding: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .subcategory img {
+      max-width: 100%;
+      height: 180px;
+      object-fit: contain;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .subcategory h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: #2c3e50;
+    }
+
+    .subcategory p {
+      font-size: 15px;
+      color: #555;
+      margin-bottom: 12px;
+    }
+
+    .subcategory:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+
+    button {
+      background: #ff9800;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #fff;
+      font-size: 14px;
+      transition: background 0.3s, transform 0.2s;
+    }
+    button:hover {
+      background: #e67e22;
+      transform: scale(1.05);
+    }
+
+    .btn-buy {
+      background: #4caf50;
+    }
+    .btn-buy:hover {
+      background: #2e7d32;
+      transform: scale(1.05);
+    }
+
+
+    @media (max-width: 1200px) {
+      .container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>SPORTS</h1>
+     <div class="cart-icon" onclick="window.location.href='cart.html'">
+    🛒 Cart (<span id="cartCount">0</span>)
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="subcategory">
+    <img src="MINI IMG/SPORTS 1.jpg" alt="1">
+    <h3>MAYOR Cricket Ball Sports</h3>
+    <p>PRICE: RS 300</p>
+    <div>
+      <button onclick="addToCart('MAYOR Cricket Ball Sports', 300, 'MINI IMG/SPORTS 1.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('MAYOR Cricket Ball Sports', 300, 'MINI IMG/SPORTS 1.jpg')">Buy Now</button>
+    </div>
+    </div>
+  
+  <div class="subcategory">
+    <img src="MINI IMG/SPORTS 2.jpg" alt="2">
+    <h3>Cricket Batting Gloves Sports</h3>
+    <p>PRICE: RS 500</p>
+    <div>
+      <button onclick="addToCart('Cricket Batting Gloves Sports', 500, 'MINI IMG/SPORTS 2.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Cricket Batting Gloves Sports', 500, 'MINI IMG/SPORTS 2.jpg')">Buy Now</button>
+    </div>
+    </div>
+  
+  <div class="subcategory">
+    <img src="MINI IMG/SPORTS 3.jpg" alt="3">
+    <h3>Table Tennis Table Sports</h3>
+    <p>PRICE: RS 30,000</p>
+    <div>
+      <button onclick="addToCart('Table Tennis Table Sports', 30000, 'MINI IMG/SPORTS 3.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Table Tennis Table Sports', 30000, 'MINI IMG/SPORTS 3.jpg')">Buy Now</button>
+    </div>
+  </div>
+
+   <div class="subcategory">
+     <img src="MINI IMG/SPORTS 4.jpg" alt="4">
+     <h3>CRICKET BAT SPORTS</h3>
+     <p>PRICE: RS 1,199</p>
+    <div>
+      <button onclick="addToCart('CRICKET BAT SPORTS', 1199, 'MINI IMG/SPORTS 4.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('CRICKET BAT SPORTS', 1199, 'MINI IMG/SPORTS 4.jpg')">Buy Now</button>
+    </div>
+   </div>
+
+    <div class="subcategory">
+      <img src="MINI IMG/SPORTS 5.jpg" alt="5">
+      <h3>Strauss Basketball Sports</h3>
+      <p>PRICE: RS 750</p>
+    <div>
+      <button onclick="addToCart('Strauss Basketball Sports', 750, 'MINI IMG/SPORTS 5.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Strauss Basketball Sports', 750, 'MINI IMG/SPORTS 5.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+    <div class="subcategory">
+        <img src="MINI IMG/SPORTS 6.jpg" alt="6">
+        <h3>CRICKET KIT SPORTS</h3>
+        <p>PRICE: RS 6000</p>
+    <div>
+      <button onclick="addToCart('CRICKET KIT SPORTS', 6000, 'MINI IMG/SPORTS 6.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('CRICKET KIT SPORTS', 6000, 'MINI IMG/SPORTS 6.jpg')">Buy Now</button>
+    </div>
+    </div>
+    <div class="subcategory">
+        <img src="MINI IMG/SPORTS 7.jpg" alt="7">
+        <h3>SPORTS SKATING SHOES</h3>
+        <p>PRICE: RS 2,000</p>
+    <div>
+      <button onclick="addToCart('SPORTS SKATING SHOES', 2000, 'MINI IMG/SPORTS 7.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('SPORTS SKATING SHOES', 2000, 'MINI IMG/SPORTS 7.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+    <div class="subcategory">
+        <img src="MINI IMG/SPORTS 8.jpg" alt="8">
+        <h3>CARROM BOARD SPORTS</h3>
+        <p>PRICE: RS 5,000</p>
+    <div>
+      <button onclick="addToCart('CARROM BOARD SPORTS', 5000, 'MINI IMG/SPORTS 8.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('CARROM BOARD SPORTS', 5000, 'MINI IMG/SPORTS 8.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+    <div class="subcategory">
+        <img src="MINI IMG/SPORTS 9.jpg" alt="9">
+        <h3>Roller Skate Sports shoes</h3>
+        <p>PRICE: RS 1,000</p>
+    <div>
+      <button onclick="addToCart('Roller Skate Sports shoes', 1000, 'MINI IMG/SPORTS 9.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Roller Skate Sports shoes', 1000, 'MINI IMG/SPORTS 9.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+    <div class="subcategory">
+        <img src="MINI IMG/SPORTS 10.jpg" alt="10">
+        <h3>COSCO VOLLEYBALL SPORTS</h3>
+        <p>PRICE: RS 1,200</p>
+    <div>
+      <button onclick="addToCart('COSCO VOLLEYBALL SPORTS', 1200, 'MINI IMG/SPORTS 10.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('COSCO VOLLEYBALL SPORTS', 1200, 'MINI IMG/SPORTS 10.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+
+      <div class="subcategory">
+    <img src="MINI IMG/SPORTS 11.jpg" alt="11">
+    <h3>NIVIA FOOTBALL SPORTS</h3>
+    <p>PRICE: RS 800</p>
+    <div>
+      <button onclick="addToCart('NIVIA FOOTBALL SPORTS', 800, 'MINI IMG/SPORTS 11.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('NIVIA FOOTBALL SPORTS', 800, 'MINI IMG/SPORTS 11.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+      <div class="subcategory">
+    <img src="MINI IMG/SPORTS 12.jpg" alt="12">
+    <h3>Table Tennis Sports</h3>
+    <p>PRICE: RS 650</p>
+    <div>
+      <button onclick="addToCart('Table Tennis Sports', 650, 'MINI IMG/SPORTS 12.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Table Tennis Sports', 650, 'MINI IMG/SPORTS 12.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+      <div class="subcategory">
+    <img src="MINI IMG/SPORTS 13.jpg" alt="13">
+    <h3>LEADER SPORTS CYCLE</h3>
+    <p>PRICE: RS 16,000</p>
+    <div>
+      <button onclick="addToCart('LEADER SPORTS CYCLE', 16000, 'MINI IMG/SPORTS 13.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('LEADER SPORTS CYCLE', 16000, 'MINI IMG/SPORTS 13.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+      <div class="subcategory">
+    <img src="MINI IMG/SPORTS 14.jpg" alt="14">
+    <h3>LYCAN BOXING BAG SPORTS</h3>
+    <p>PRICE: RS 1,000</p>
+    <div>
+      <button onclick="addToCart('LYCAN BOXING BAG SPORTS', 1000, 'MINI IMG/SPORTS 14.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('LYCAN BOXING BAG SPORTS', 1000, 'MINI IMG/SPORTS 14.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+      <div class="subcategory">
+    <img src="MINI IMG/SPORTS 15.jpg" alt="15">
+    <h3>Monika Sports Boxing Gloves</h3>
+    <p>PRICE: RS 999</p>
+    <div>
+      <button onclick="addToCart('Monika Sports Boxing Gloves', 999, 'MINI IMG/SPORTS 15.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Monika Sports Boxing Gloves', 999, 'MINI IMG/SPORTS 15.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+
+      <div class="subcategory">
+    <img src="MINI IMG/SPORTS 16.jpg" alt="16">
+    <h3>Monika Sports Badminton Kit</h3>
+    <p>PRICE: RS 800</p>
+    <div>
+      <button onclick="addToCart('Monika Sports Badminton Kit', 800, 'MINI IMG/SPORTS 16.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Monika Sports Badminton Kit', 800, 'MINI IMG/SPORTS 16.jpg')">Buy Now</button>
+    </div>
+    </div>
+  
+  <div class="subcategory">
+    <img src="MINI IMG/SPORTS 17.jpg" alt="17">
+    <h3>DreamFit 30kg SPORTS</h3>
+    <p>PRICE: RS 8,000</p>
+    <div>
+      <button onclick="addToCart('DreamFit 30kg SPORTS', 8000, 'MINI IMG/SPORTS 17.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('DreamFit 30kg SPORTS', 8000, 'MINI IMG/SPORTS 17.jpg')">Buy Now</button>
+    </div>
+    </div>
+  
+  <div class="subcategory">
+    <img src="MINI IMG/SPORTS 18.jpg" alt="18">
+    <h3>NIVIA FOOTBALL SPORTS SHOES</h3>
+    <p>PRICE: RS 2,200</p>
+    <div>
+      <button onclick="addToCart('NIVIA FOOTBALL SPORTS SHOES', 2200, 'MINI IMG/SPORTS 18.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('NIVIA FOOTBALL SPORTS SHOES', 2200, 'MINI IMG/SPORTS 18.jpg')">Buy Now</button>
+    </div>
+  </div>
+
+   <div class="subcategory">
+     <img src="MINI IMG/SPORTS 19.jpg" alt="19">
+     <h3>BIOFIT SPORTS</h3>
+     <p>PRICE: RS 1,700</p>
+    <div>
+      <button onclick="addToCart('BIOFIT SPORTS', 1700, 'MINI IMG/SPORTS 19.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('BIOFIT SPORTS', 1700, 'MINI IMG/SPORTS 19.jpg')">Buy Now</button>
+    </div>
+   </div>
+
+    <div class="subcategory">
+      <img src="MINI IMG/SPORTS 20.jpg" alt="20">
+      <h3>CLYMB SPORTS SHOES</h3>
+      <p>PRICE: RS 900</p>
+    <div>
+      <button onclick="addToCart('CLYMB SPORTS SHOES', 900, 'MINI IMG/SPORTS 20.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('CLYMB SPORTS SHOES', 900, 'MINI IMG/SPORTS 20.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+
+</div>
+
+
+<script>
+  function updateCartCount() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    document.getElementById("cartCount").innerText = cart.length;
+  }
+
+  function addToCart(name, price, image) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push({ name, price, image });
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+    alert(name + " added to cart!");
+  }
+      function buyNow(name, price, image) {
+    let cart = [{ name, price, image }];
+    localStorage.setItem("cart", JSON.stringify(cart));
+    window.location.href = "Paynow.html";
+  }
+
+  updateCartCount();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Success - ALL IN ONE</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 20px;
+    }
+
+    .success-box {
+      background: #ffffffcc;
+      padding: 40px 35px;
+      border-radius: 20px;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+      text-align: center;
+      backdrop-filter: blur(10px);
+      animation: fadeIn 0.6s ease-in-out;
+      max-width: 500px;
+      width: 100%;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .checkmark {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 25px auto;
+      background: #4caf50;
+      animation: popIn 0.5s ease-out;
+      position: relative;
+    }
+
+    .checkmark::after {
+      content: '';
+      width: 25px;
+      height: 50px;
+      border-left: 5px solid #fff;
+      border-bottom: 5px solid #fff;
+      transform: rotate(-45deg);
+      position: absolute;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0); opacity: 0; }
+      60% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+
+    h1 {
+      color: #2c3e50;
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    p {
+      color: #34495e;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .order-id-box {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    .order-id-label {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .order-id-value {
+      font-size: 22px;
+      font-weight: 700;
+      color: white;
+      letter-spacing: 1px;
+      word-break: break-all;
+    }
+
+    .order-summary {
+      background: #f0f3f5;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      text-align: left;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .order-summary h3 {
+      color: #2c3e50;
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .summary-item:last-child {
+      border-bottom: none;
+    }
+
+    .item-name {
+      font-weight: 600;
+      color: #2c3e50;
+      flex: 1;
+    }
+
+    .item-price {
+      color: #667eea;
+      font-weight: 600;
+    }
+
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 0 10px 0;
+      border-top: 2px solid #ddd;
+      margin-top: 10px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #2c3e50;
+    }
+
+    .delivery-info {
+      font-size: 14px;
+      color: #6c757d;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      flex-direction: column;
+    }
+
+    .btn-track, .btn-home {
+      padding: 14px 28px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-track {
+      background: #667eea;
+      color: white;
+    }
+
+    .btn-track:hover {
+      background: #5568d3;
+      transform: scale(1.05);
+      box-shadow: 0 6px 14px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-home {
+      background: #6c757d;
+      color: white;
+    }
+
+    .btn-home:hover {
+      background: #5a6268;
+      transform: scale(1.05);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+    }
+
+    .info-text {
+      font-size: 14px;
+      color: #6c757d;
+      margin-top: 15px;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 20px;
+      color: #6c757d;
+    }
+
+    @media (max-width: 768px) {
+      .success-box {
+        padding: 30px 25px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .order-id-value {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="success-box">
+    <div class="checkmark"></div>
+    <h1>🎉 Payment Successful!</h1>
+    <p>Thank you for your purchase. Your order has been confirmed.</p>
+
+    <div class="order-id-box">
+      <div class="order-id-label">Your Order ID</div>
+      <div class="order-id-value" id="orderIdDisplay">Loading...</div>
+    </div>
+
+    <div class="order-summary" id="orderSummary">
+      <div class="loading">Loading order details...</div>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn-track" id="trackBtn">Track Your Order</button>
+      <button class="btn-home" onclick="window.location.href='index.html'">Continue Shopping</button>
+    </div>
+
+    <p class="info-text">
+      📧 A confirmation email with order details has been sent to your email address.
+    </p>
+  </div>
+
+  <script>
+    // Get the latest order ID from sessionStorage
+    function getLatestOrderId() {
+      const allOrders = JSON.parse(sessionStorage.getItem('allOrders') || '{}');
+      const orderIds = Object.keys(allOrders);
+      
+      if (orderIds.length === 0) {
+        return null;
+      }
+
+      // Sort by date and get the latest
+      const sortedOrders = orderIds.sort((a, b) => {
+        const dateA = new Date(allOrders[a].date).getTime();
+        const dateB = new Date(allOrders[b].date).getTime();
+        return dateB - dateA;
+      });
+
+      return sortedOrders[0];
+    }
+
+    // Display order details
+    function displayOrderDetails() {
+      const latestOrderId = getLatestOrderId();
+      const orderIdDisplay = document.getElementById('orderIdDisplay');
+      const orderSummary = document.getElementById('orderSummary');
+      const trackBtn = document.getElementById('trackBtn');
+
+      if (!latestOrderId) {
+        // No order found - try to create from cart (fallback)
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        if (cart.length > 0) {
+          // Calculate total
+          let total = 0;
+          cart.forEach(item => {
+            total += item.price * (item.quantity || 1);
+          });
+
+          // Create order
+          const orderId = generateOrderId();
+          const order = {
+            orderId: orderId,
+            date: new Date().toISOString(),
+            status: 'processing',
+            items: cart.map(item => ({
+              name: item.name,
+              price: item.price,
+              quantity: item.quantity || 1,
+              image: item.image || 'https://via.placeholder.com/80'
+            })),
+            total: total,
+            address: 'Hosūr, Tamil Nadu, IN',
+            deliveryDate: new Date(Date.now() + 5*24*60*60*1000).toISOString(),
+            paymentMethod: 'ONLINE',
+            timeline: [
+              {
+                status: 'Order Placed',
+                time: new Date().toISOString(),
+                description: 'Your order has been successfully placed',
+                completed: true
+              },
+              {
+                status: 'Processing',
+                time: new Date(Date.now() + 24*60*60*1000).toISOString(),
+                description: 'Your order is being processed',
+                completed: false
+              },
+              {
+                status: 'Shipped',
+                time: new Date(Date.now() + 2*24*60*60*1000).toISOString(),
+                description: 'Your order has been shipped',
+                completed: false
+              },
+              {
+                status: 'Out for Delivery',
+                time: new Date(Date.now() + 4*24*60*60*1000).toISOString(),
+                description: 'Your order is out for delivery',
+                completed: false
+              },
+              {
+                status: 'Delivered',
+                time: new Date(Date.now() + 5*24*60*60*1000).toISOString(),
+                description: 'Your order has been delivered',
+                completed: false
+              }
+            ]
+          };
+
+          // Save to sessionStorage
+          const allOrders = JSON.parse(sessionStorage.getItem('allOrders') || '{}');
+          allOrders[orderId] = order;
+          sessionStorage.setItem('allOrders', JSON.stringify(allOrders));
+
+          // Display the order
+          displayOrder(order);
+
+          // Clear cart
+          localStorage.removeItem('cart');
+        } else {
+          orderIdDisplay.textContent = 'N/A';
+          orderSummary.innerHTML = '<p style="color: #dc3545; text-align: center;">No order details found.</p>';
+        }
+      } else {
+        // Order found - display it
+        const allOrders = JSON.parse(sessionStorage.getItem('allOrders') || '{}');
+        const order = allOrders[latestOrderId];
+        displayOrder(order);
+      }
+    }
+
+    function displayOrder(order) {
+      const orderIdDisplay = document.getElementById('orderIdDisplay');
+      const orderSummary = document.getElementById('orderSummary');
+      const trackBtn = document.getElementById('trackBtn');
+
+      // Display order ID
+      orderIdDisplay.textContent = order.orderId;
+
+      // Display order summary
+      let summaryHTML = '<h3>Order Summary</h3>';
+      
+      order.items.forEach(item => {
+        const itemTotal = item.price * (item.quantity || 1);
+        summaryHTML += `
+          <div class="summary-item">
+            <div class="item-name">${item.name} × ${item.quantity || 1}</div>
+            <div class="item-price">₹${itemTotal.toLocaleString()}</div>
+          </div>
+        `;
+      });
+
+      summaryHTML += `
+        <div class="total-row">
+          <span>Total Amount:</span>
+          <span>₹${order.total.toLocaleString()}</span>
+        </div>
+        <div class="delivery-info">
+          📦 Estimated Delivery: ${new Date(order.deliveryDate).toLocaleDateString('en-US', { 
+            month: 'short', 
+            day: 'numeric', 
+            year: 'numeric' 
+          })}
+        </div>
+      `;
+
+      orderSummary.innerHTML = summaryHTML;
+
+      // Setup track button
+      trackBtn.onclick = function() {
+        window.location.href = `tracking.html?orderId=${order.orderId}`;
+      };
+    }
+
+    function generateOrderId() {
+      const timestamp = Date.now();
+      const random = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+      return 'ORD' + timestamp + random;
+    }
+
+    // Initialize on page load
+    window.addEventListener('load', () => {
+      // Small delay for better UX
+      setTimeout(displayOrderDetails, 500);
+    });
+  </script>
+</body>
+</html>

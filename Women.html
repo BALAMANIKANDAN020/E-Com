@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>WOMEN - Subcategories</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 20px 30px;
+      text-align: center;
+      font-size: 26px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+
+    .cart-icon {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 16px;
+      font-weight: bold;
+      background: #ff9800;
+      padding: 6px 14px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .cart-icon:hover {
+      background: #e67e22;
+      color: #fff;
+    }
+
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 25px;
+      padding: 40px 50px;
+    }
+
+
+    .subcategory {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      padding: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .subcategory img {
+      max-width: 100%;
+      height: 180px;
+      object-fit: contain;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .subcategory h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: #2c3e50;
+    }
+
+    .subcategory p {
+      font-size: 15px;
+      color: #555;
+      margin-bottom: 12px;
+    }
+
+    .subcategory:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+
+    button {
+      background: #ff9800;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #fff;
+      font-size: 14px;
+      transition: background 0.3s, transform 0.2s;
+    }
+    button:hover {
+      background: #e67e22;
+      transform: scale(1.05);
+    }
+
+    .btn-buy {
+      background: #4caf50;
+    }
+    .btn-buy:hover {
+      background: #2e7d32;
+      transform: scale(1.05);
+    }
+
+
+    @media (max-width: 1200px) {
+      .container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>WOMEN</h1>
+     <div class="cart-icon" onclick="window.location.href='cart.html'">
+    🛒 Cart (<span id="cartCount">0</span>)
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="subcategory">
+    <img src="MINI IMG/WOMEN 1.jpg" alt="1">
+    <h3>Soft Silk Sarees</h3>
+    <p>PRICE: RS 750</p>
+    <div>
+      <button onclick="addToCart('Soft Silk Sarees', 750, 'MINI IMG/WOMEN 1.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Soft Silk Sarees', 750, 'MINI IMG/WOMEN 1.jpg')">Buy Now</button>
+    </div>
+    </div>
+  
+  <div class="subcategory">
+    <img src="MINI IMG/WOMEN 2.jpg" alt="2">
+    <h3>Lichi Silk Sarees</h3>
+    <p>PRICE: RS 600</p>
+    <div>
+      <button onclick="addToCart('Lichi Silk Sarees', 600, 'MINI IMG/WOMEN 2.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Lichi Silk Sarees', 600, 'MINI IMG/WOMEN 2.jpg')">Buy Now</button>
+    </div>
+    </div>
+  
+  <div class="subcategory">
+    <img src="MINI IMG/WOMEN 3.jpg" alt="3">
+    <h3>Lycra Sarees</h3>
+    <p>PRICE: RS 450</p>
+    <div>
+      <button onclick="addToCart('Lycra Sarees', 450, 'MINI IMG/WOMEN 3.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Lycra Sarees', 450, 'MINI IMG/WOMEN 3.jpg')">Buy Now</button>
+    </div>
+  </div>
+
+   <div class="subcategory">
+     <img src="MINI IMG/WOMEN 4.jpg" alt="4">
+     <h3>Organza Sarees</h3>
+     <p>PRICE: RS 600</p>
+    <div>
+      <button onclick="addToCart('Organza Sarees', 600, 'MINI IMG/WOMEN 4.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Organza Sarees', 600, 'MINI IMG/WOMEN 4.jpg')">Buy Now</button>
+    </div>
+   </div>
+
+    <div class="subcategory">
+      <img src="MINI IMG/WOMEN 5.jpg" alt="5">
+      <h3>Satin Sarees</h3>
+      <p>PRICE: RS 800</p>
+    <div>
+      <button onclick="addToCart('Satin Sarees', 800, 'MINI IMG/WOMEN 5.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Satin Sarees', 800, 'MINI IMG/WOMEN 5.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+    <div class="subcategory">
+        <img src="MINI IMG/WOMEN 6.jpg" alt="6">
+        <h3>Flared Salwar Suit</h3>
+        <p>PRICE: RS 650</p>
+    <div>
+      <button onclick="addToCart('Flared Salwar Suit', 650, 'MINI IMG/WOMEN 6.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Flared Salwar Suit', 650, 'MINI IMG/WOMEN 6.jpg')">Buy Now</button>
+    </div>
+    </div>
+    <div class="subcategory">
+        <img src="MINI IMG/WOMEN 7.jpg" alt="7">
+        <h3>Afghani Suit</h3>
+        <p>PRICE: RS 500</p>
+    <div>
+      <button onclick="addToCart('Afghani Suit', 500, 'MINI IMG/WOMEN 7.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Afghani Suit', 500, 'MINI IMG/WOMEN 7.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+    <div class="subcategory">
+        <img src="MINI IMG/WOMEN 8.jpg" alt="8">
+        <h3>Straight Cut Salwar Suit</h3>
+        <p>PRICE: RS 700</p>
+    <div>
+      <button onclick="addToCart('Straight Cut Salwar Suit', 700, 'MINI IMG/WOMEN 8.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Straight Cut Salwar Suit', 700, 'MINI IMG/WOMEN 8.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+    <div class="subcategory">
+        <img src="MINI IMG/WOMEN 9.jpg" alt="9">
+        <h3>Churidar Kurta Suit</h3>
+        <p>PRICE: RS 450</p>
+    <div>
+      <button onclick="addToCart('Churidar Kurta Suit', 450, 'MINI IMG/WOMEN 9.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Churidar Kurta Suit', 450, 'MINI IMG/WOMEN 9.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+    <div class="subcategory">
+        <img src="MINI IMG/WOMEN 10.jpg" alt="10">
+        <h3>Lehenga Salwar Suit</h3>
+        <p>PRICE: RS 700</p>
+    <div>
+      <button onclick="addToCart('Lehenga Salwar Suit', 700, 'MINI IMG/WOMEN 10.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Lehenga Salwar Suit', 700, 'MINI IMG/WOMEN 10.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+
+      <div class="subcategory">
+    <img src="MINI IMG/WOMEN 11.jpg" alt="11">
+    <h3>Casual Frocks</h3>
+    <p>PRICE: RS 500</p>
+    <div>
+      <button onclick="addToCart('Casual Frocks', 500, 'MINI IMG/WOMEN 11.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Casual Frocks', 500, 'MINI IMG/WOMEN 11.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+      <div class="subcategory">
+    <img src="MINI IMG/WOMEN 12.jpg" alt="12">
+    <h3>Wrap Frocks</h3>
+    <p>PRICE: RS 380</p>
+    <div>
+      <button onclick="addToCart('Wrap Frocks', 380, 'MINI IMG/WOMEN 12.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Wrap Frocks', 380, 'MINI IMG/WOMEN 12.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+      <div class="subcategory">
+    <img src="MINI IMG/WOMEN 13.jpg" alt="13">
+    <h3>Tunic Frocks</h3>
+    <p>PRICE: RS 670</p>
+    <div>
+      <button onclick="addToCart('Tunic Frocks', 670, 'MINI IMG/WOMEN 13.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Tunic Frocks', 670, 'MINI IMG/WOMEN 13.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+      <div class="subcategory">
+    <img src="MINI IMG/WOMEN 14.jpg" alt="14">
+    <h3>Midi Frocks</h3>
+    <p>PRICE: RS 450</p>
+    <div>
+      <button onclick="addToCart('Midi Frocks', 450,'MINI IMG/WOMEN 14.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Midi Frocks', 450, 'MINI IMG/WOMEN 14.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+      <div class="subcategory">
+    <img src="MINI IMG/WOMEN 15.jpg" alt="15">
+    <h3>Blazer Frocks</h3>
+    <p>PRICE: RS 600</p>
+    <div>
+      <button onclick="addToCart('Blazer Frocks', 600, 'MINI IMG/WOMEN 15.jpg')">Add to Cart</button>
+      <button class="btn-buy" onclick="buyNow('Blazer Frocks', 600, 'MINI IMG/WOMEN 15.jpg')">Buy Now</button>
+    </div>
+    </div>
+
+</div>
+
+
+<script>
+  function updateCartCount() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    document.getElementById("cartCount").innerText = cart.length;
+  }
+
+  function addToCart(name, price, image) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push({ name, price, image });
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+    alert(name + " added to cart!");
+  }
+
+    function buyNow(name, price, image) {
+    let cart = [{ name, price, image }];
+    localStorage.setItem("cart", JSON.stringify(cart));
+    window.location.href = "Paynow.html";
+  }
+
+  updateCartCount();
+</script>
+
+</body>
+</html>

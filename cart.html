@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ALL IN ONE</title>
+  <style>
+    /* Reset & basic styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    header {
+      width: 100%;
+      max-width: 900px;
+      background: #6a1b9a;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      margin-bottom: 30px;
+    }
+
+    .cart-container {
+      width: 100%;
+      max-width: 900px;
+      background: #fff;
+      border-radius: 15px;
+      padding: 30px 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      transition: 0.3s;
+    }
+
+    .cart-container:hover {
+      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+    }
+
+    .cart-container h2 {
+      text-align: center;
+      font-size: 26px;
+      color: #333;
+      margin-bottom: 25px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    table th, table td {
+      padding: 14px 10px;
+      text-align: center;
+      font-size: 16px;
+      border-bottom: 1px solid #eee;
+      vertical-align: middle;
+    }
+
+    table th {
+      background: #f0f0f0;
+      font-weight: 600;
+      color: #555;
+    }
+
+    table tr:nth-child(even) {
+      background: #fafafa;
+    }
+
+    .product-img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .product-name {
+      font-weight: 600;
+      color: #333;
+    }
+
+    .remove-btn {
+      padding: 8px 16px;
+      background: #ff5252;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .remove-btn:hover {
+      background: #e04848;
+      transform: scale(1.05);
+    }
+
+    .total {
+      font-size: 20px;
+      font-weight: 700;
+      color: #333;
+      text-align: right;
+      margin-top: 15px;
+    }
+
+    .empty {
+      text-align: center;
+      font-size: 18px;
+      color: #999;
+      padding: 30px 0;
+    }
+
+    .checkout-btn {
+      display: block;
+      margin: 25px auto 0;
+      padding: 14px 25px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, #6a1b9a, #ab47bc);
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .checkout-btn:hover {
+      background: linear-gradient(135deg, #7b1fa2, #ba68c8);
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 600px) {
+      .cart-container {
+        padding: 20px 15px;
+      }
+      table th, table td {
+        font-size: 14px;
+        padding: 10px 5px;
+      }
+      .product-img {
+        width: 60px;
+        height: 60px;
+      }
+      .checkout-btn {
+        font-size: 16px;
+        padding: 12px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  🛒 ALL IN ONE
+</header>
+
+<div class="cart-container">
+  <h2>Cart Items</h2>
+  <div id="cartItems"></div>
+  <div id="cartTotal" class="total"></div>
+  <button id="checkoutBtn" class="checkout-btn" style="display:none;">Proceed to Checkout</button>
+</div>
+
+<script>
+  function loadCart() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let cartItemsDiv = document.getElementById("cartItems");
+    let cartTotalDiv = document.getElementById("cartTotal");
+    let checkoutBtn = document.getElementById("checkoutBtn");
+    cartItemsDiv.innerHTML = "";
+    cartTotalDiv.innerHTML = "";
+
+    if (cart.length === 0) {
+      cartItemsDiv.innerHTML = "<p class='empty'>Your cart is empty!</p>";
+      checkoutBtn.style.display = "none";
+      return;
+    }
+
+    let table = document.createElement("table");
+    let headerRow = `
+      <tr>
+        <th>Image</th>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Action</th>
+      </tr>`;
+    table.innerHTML = headerRow;
+
+    let total = 0;
+    cart.forEach((item, index) => {
+      let row = document.createElement("tr");
+      let imgSrc = item.image || 'https://via.placeholder.com/80?text=No+Image';
+      row.innerHTML = `
+        <td><img src="${imgSrc}" alt="${item.name}" class="product-img"></td>
+        <td class="product-name">${item.name}</td>
+        <td>Rs ${item.price}</td>
+        <td><button class="remove-btn" onclick="removeFromCart(${index})">Remove</button></td>
+      `;
+      table.appendChild(row);
+      total += item.price;
+    });
+
+    cartItemsDiv.appendChild(table);
+    cartTotalDiv.innerText = "Total: Rs " + total;
+    checkoutBtn.style.display = "block";
+  }
+
+  function removeFromCart(index) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    loadCart();
+  }
+
+  function proceedToCheckout() {
+    window.location.href = "Paynow.html";
+  }
+
+  document.getElementById("checkoutBtn").addEventListener("click", proceedToCheckout);
+
+  loadCart();
+</script>
+
+</body>
+</html>
